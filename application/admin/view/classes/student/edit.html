@@ -1,0 +1,40 @@
+<form id="edit-form" class="form-horizontal" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Year')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-year" data-rule="required" class="form-control datetimepicker form-control" data-date-format="YYYY" name="row[year]" type="text" value="{$row.year}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Semester')}:</label>
+        <div class="col-xs-12 col-sm-8">
+                        
+            <select  id="c-semester" data-rule="required" class="form-control selectpicker" name="row[semester]">
+                {foreach name="semesterList" item="vo"}
+                    <option value="{$key}" {in name="key" value="$row.semester"}selected{/in}>{$vo}</option>
+                {/foreach}
+            </select>
+
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('Ccid')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-ccid" data-rule="required" data-source="classes/category/index" data-primary-key="ccid" class="form-control selectpage form-control" name="row[ccid]" type="text" value="{$row.ccid}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-xs-12 col-sm-2">{:__('User_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input id="c-user_id" data-rule="required" data-source="user/user/index" data-field="username" data-params='{"custom[group_id]":"2"}' data-primary-key="user_id" class="form-control selectpage form-control" name="row[user_id]" type="text" value="{$row.user_id}">
+        </div>
+    </div>
+    <div class="form-group layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

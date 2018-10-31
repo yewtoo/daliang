@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'Avatar'  =>  '头像',
+    'Group_id'  =>  '组别',
+    'User_id'  =>  '会员ID',
+    'Account'  =>  '账号',
+    'Password'  =>  '密码',
+    'Username'  =>  '姓名',
+    'Mobile'  =>  '手机号码',
+    'Tel'  =>  '固定电话',
+    'Email'  =>  '电子邮箱',
+    'Location'  =>  '户籍所在地',
+    'Gender'  =>  '性别',
+    'Gender 1'  =>  '男',
+    'Gender 2'  =>  '女',
+    'Birthday'  =>  '生日',
+    'Join_time'  =>  '入职/入学时间',
+    'Status'  =>  '状态',
+    'Status 1'  =>  '正常',
+    'Status 0'  =>  '锁定',
+    'Createtime'  =>  '创建时间',
+    'Updatetime'  =>  '更新时间',
+    'Salt'  =>  '密码盐',
+    'Group.name'  =>  '组名',
+    'Leave password blank if dont want to change' => '不修改密码请留空',
+];
