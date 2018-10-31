@@ -64,7 +64,7 @@ class User extends Backend
                     ->select();
 
             foreach ($list as $row) {
-                $row->visible(['user_id','account','username','mobile','status']);
+                $row->visible(['user_id','account','username','mobile','status','join_time']);
                 $row->visible(['group']);
             }
             $list = collection($list)->toArray();

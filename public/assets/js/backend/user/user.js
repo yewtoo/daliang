@@ -29,12 +29,21 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         {checkbox: true},
                         {field: 'user_id', title: __('User_id')},
-                        {field: 'group.name', title: __('Group.name')},
+                        {
+                            field: 'group.name', title: __('Group.name'), searchList: function (column) {
+                                return Template('grouptpl', {});
+                            }
+                        },
                         {field: 'account', title: __('Account')},
                         {field: 'username', title: __('Username')},
                         {field: 'mobile', title: __('Mobile')},
+                        {
+                            field: 'join_time', title: __('Join_time'), searchList: function (column) {
+                                return Template('jointimetpl', {});
+                            }
+                        },
                         {field: 'status', title: __('Status'), searchList: {"1":__('Status 1'),"0":__('Status 0')}, formatter: Table.api.formatter.status},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
+                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate},
                     ]
                 ]
             });

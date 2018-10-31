@@ -51,7 +51,7 @@ class Category extends Backend
             }
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
-                    
+
                     ->where($where)
                     ->order($sort, $order)
                     ->count();
@@ -63,11 +63,17 @@ class Category extends Backend
                     ->limit($offset, $limit)
                     ->select();
 
+            //查询所有年级分类
+            $grade = $this->model->where('pid', 0)->column('name', 'ccid');
+
             foreach ($list as $k => $row) {
-                $row->visible(['ccid','name']);
+                $row->visible(['ccid','name','grade']);
                 //区分年级/班级
                 if ($row['pid'] == 0) {
-                    $list[$k]['name'] = '[年级] ' . $list[$k]['name'];
+                    $list[$k]['grade'] = $list[$k]['name'];
+                    unset($list[$k]['name']);
+                } else {
+                    $list[$k]['grade'] = $grade[$row['pid']];
                 }
             }
             $list = collection($list)->toArray();

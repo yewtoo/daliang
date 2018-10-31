@@ -42,3 +42,24 @@
         </div>
     </div>
 </div>
+
+<script id="grouptpl" type="text/html">
+    <div class="row">
+            <div class="col-xs-12">
+                <input type="hidden" class="form-control operate" name="group_id-operate" data-name="group_id" value="=" readonly="">
+                <select class="form-control" name="group_id">
+                    <option value="">选择</option>
+                    <option value="1">教师</option>
+                    <option value="2">学生</option>
+                </select>
+            </div>
+    </div>
+</script>
+<script id="jointimetpl" type="text/html">
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="hidden" class="form-control operate" name="join_time-operate" data-name="join_time" value="=" readonly="">
+            <input class="form-control datetimepicker" data-date-format="YYYY-MM-DD" data-use-current="true" name="join_time" id="join_time" type="text">
+        </div>
+    </div>
+</script>
