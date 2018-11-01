@@ -13,4 +13,6 @@ return [
     'Fail'                              => '失败',
     'Parameter can not be empty'        => '参数不能为空',
     'Not yet allocated classes'         => '暂未分配班级',
+    'Semester 1'                        => '第一学期',
+    'Semester 2'                        => '第二学期',
 ];
