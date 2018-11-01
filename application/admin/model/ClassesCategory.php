@@ -23,8 +23,29 @@ class ClassesCategory extends Model
     protected static function init()
     {
         self::beforeDelete(function ($row) {
-            //有下级分类的不能删除
+            /***************有关联数据的不能删除***********************/
+            //下级分类
             if (checkTableExistValue('ClassesCategory', 'pid', $row->ccid)) {
+                return false;
+            };
+            //班级学生
+            if (checkTableExistValue('ClassesStudent', 'ccid', $row->ccid)) {
+                return false;
+            };
+            //班级管理
+            if (checkTableExistValue('Classes', 'ccid', $row->ccid)) {
+                return false;
+            };
+            //成绩管理
+            if (checkTableExistValue('Score', 'ccid', $row->ccid)) {
+                return false;
+            };
+            //教师任课管理
+            if (checkTableExistValue('TeacherSubject', 'ccid', $row->ccid)) {
+                return false;
+            };
+            //拓展课程
+            if (checkTableExistValue('Expand', 'ccid', $row->ccid)) {
                 return false;
             };
         });

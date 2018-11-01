@@ -20,6 +20,16 @@ class ScoreCategory extends Model
     protected $append = [
 
     ];
+    protected static function init()
+    {
+        self::beforeDelete(function ($row) {
+            /***************有关联数据的不能删除***********************/
+            //成绩管理
+            if (checkTableExistValue('Score', 'scid', $row->scid)) {
+                return false;
+            };
+        });
+    }
     
 
     

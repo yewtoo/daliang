@@ -20,6 +20,24 @@ class Subject extends Model
     protected $append = [
         'type_text'
     ];
+    protected static function init()
+    {
+        self::beforeDelete(function ($row) {
+            /***************有关联数据的不能删除***********************/
+            //成绩管理
+            if (checkTableExistValue('Score', 'sid', $row->sid)) {
+                return false;
+            };
+            //教师任课管理
+            if (checkTableExistValue('TeacherSubject', 'sid', $row->sid)) {
+                return false;
+            };
+            //拓展课程
+            if (checkTableExistValue('Expand', 'sid', $row->sid)) {
+                return false;
+            };
+        });
+    }
     
 
     
