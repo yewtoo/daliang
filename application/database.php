@@ -16,13 +16,13 @@ return [
     // 数据库类型
 //    'type'            => Env::get('database.type', 'mysql'),
 //    // 服务器地址
-//    'hostname'        => Env::get('database.hostname', '47.97.179.56'),
+//    'hostname'        => Env::get('database.hostname', '134.175.109.136'),
 //    // 数据库名
 //    'database'        => Env::get('database.database', 'daliang'),
 //    // 用户名
 //    'username'        => Env::get('database.username', 'daliang'),
 //    // 密码
-//    'password'        => Env::get('database.password', 'fZsezHYBPkGrPraX'),
+//    'password'        => Env::get('database.password', 'pDiD4At2PD4hFGP4'),
 
     'hostname'        => Env::get('database.hostname', '127.0.0.1'),
     // 数据库名
