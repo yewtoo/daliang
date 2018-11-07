@@ -99,6 +99,8 @@ class User extends Base
         $data = [
             'avatar' => ROOT_URL . $user['avatar'],
             'username' => $user['username'],
+            'year' => $this->maxYear,
+            'semester' => __('Semester ' . $this->semester),
             'class' => $classInfo['name'],
         ];
         returnJson(0, __('Login successful'), $data);
