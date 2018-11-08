@@ -8,5 +8,6 @@ class Expand extends Model{
     public function initialize() {
         
         parent::initialize();
+        
     }
 }

@@ -58,6 +58,7 @@ class Import extends \think\Controller
         }
         
         $PHPExcel = $PHPReader->load($filePath); //加载文件
+        
         $currentSheet = $PHPExcel->getSheet(0);  //读取文件中的第一个工作表
         $allColumn = $currentSheet->getHighestDataColumn(); //取得最大的列号
         $allRow = $currentSheet->getHighestRow(); //取得一共有多少行
