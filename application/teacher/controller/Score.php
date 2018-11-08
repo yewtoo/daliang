@@ -1,28 +1,28 @@
 <?php
 
 namespace app\teacher\controller;
-use think\Db;
-/**
- * 拓展课程导入评价跟成绩
- */
-class Import extends \think\Controller
-{
-    //无需登录的方法
-    protected $noLogin = ['login', 'logout'];
 
+use think\Db;
+
+
+class Score extends Base
+{
+    protected $noLogin = [];
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('expand');
+        $this->model = model('score');
     }
-    
+    /**
+     * 学生成绩导入
+     */
     public function import()
     {
 //        $file = $this->request->request('file');
         
-        $file='uploads'.DS.'20181107'.DS.'123.xls';
+        $file='uploads'.DS.'20181108'.DS.'456.xls';
         if (!$file) {
             returnJson(1,__('Parameter %s can not be empty', 'file'));
         }
@@ -47,7 +47,7 @@ class Import extends \think\Controller
         $table = $this->model->getQuery()->getTable();
         $database = \think\Config::get('database.database');
         $fieldArr = [];
-        $list = DB::query("SELECT COLUMN_NAME,COLUMN_COMMENT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME ='uweb_expand' AND TABLE_SCHEMA ='daliang'");
+        $list = db()->query("SELECT COLUMN_NAME,COLUMN_COMMENT FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = ? AND TABLE_SCHEMA = ?", [$table, $database]);
         
         foreach ($list as $k => $v) {
             if ($importHeadType == 'comment') {
@@ -69,6 +69,7 @@ class Import extends \think\Controller
                 $fields[] = $val;
             }
         }
+        
         $insert = [];
         for ($currentRow = 2; $currentRow <= $allRow; $currentRow++) {
             $values = [];
@@ -78,7 +79,7 @@ class Import extends \think\Controller
             }
             
             $row = [];
-            $temp = array_combine($fields, $values);
+            $temp = array_combine($fields, $values);            
             foreach ($temp as $k => $v) {
                 if (isset($fieldArr[$k]) && $k !== '') {
                     $row[$fieldArr[$k]] = $v;
@@ -95,9 +96,7 @@ class Import extends \think\Controller
             returnJson(1,__('No rows were updated'));
         }
         try {
-            foreach($insert as $k=>$v){
-                $zzz=db('expand')->where("year={$v['year']} and semester={$v['semester']} and ccid={$v['ccid']} and sid={$v['sid']} and teacher_id={$v['teacher_id']} and student_id={$v['student_id']}")->update(['score'=>$v['score'],'evaluate'=>$v['evaluate']]);
-            }
+            $this->model->saveAll($insert);
             returnJson(0, __('Successful'));
         } catch (\think\exception\PDOException $exception) {
            returnJson(1,$exception->getMessage());
